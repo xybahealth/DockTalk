@@ -83,30 +83,31 @@ router.post('/register', upload.single('img'), function (req, res, next) {
             newUser.save(function (error, user) {
               if (error) return res.json({ msg: 'Server Error', error: error });
               else {
-                //my own code
-                res.status(200).json({"msg":"New User created"});
-                return;
+                // //my own code
+                // res.status(200).json({"msg":"New User created"});
+                // return;
+                //https://aakashsms.com/admin/public/sms/v3/send
 
-              //   // Sending OTP to Contact Number
-              //  axios.post(process.env.AAKASH_SMS_API, {
-              //       auth_token: process.env.AAKASH_SMS_AUTH_TOKEN,
-              //       to: req.body.contact_number,
-              //       text: `Your Mobile Verification Code for DocTalk App is ${newOTP}`,
-              //     })
-              //     .then((response) => {
-              //       //If error occurs
-              //       if (response.error) {
-              //         return res.json({
-              //           msg: response.message,
-              //         });
-              //       } else {
-              //         res.json({
-              //           isOTPSent: true,
-              //           msg: 'Verfication Code Sent to Your Mobile Number',
-              //           user_id: user._id,
-              //         });
-              //       }
-              //     });
+                // Sending OTP to Contact Number
+               axios.post(process.env.AAKASH_SMS_API, {
+                    auth_token: process.env.AAKASH_SMS_AUTH_TOKEN,
+                    to: req.body.contact_number,
+                    text: `Your Mobile Verification Code for DocTalk App is ${newOTP}`,
+                  })
+                  .then((response) => {
+                    //If error occurs
+                    if (response.error) {
+                      return res.json({
+                        msg: response.message,
+                      });
+                    } else {
+                      res.json({
+                        isOTPSent: true,
+                        msg: 'Verfication Code Sent to Your Mobile Number',
+                        user_id: user._id,
+                      });
+                    }
+                  });
               }
             });
           });
