@@ -51,7 +51,8 @@ require('./connections/db');
 
 //Routes
 app.get('/',(req,res)=>{
-	res.sendFile(path.join(__dirname, '/public/site', 'index.html'));
+  res.status(200).json({"msg":"This is docktalk api"});
+	//res.sendFile(path.join(__dirname, '/public/site', 'index.html'));
 });
 app.get('/privacy',(req,res)=>{
 
@@ -79,7 +80,6 @@ app.use('/api/patients', patientsRouter);
 app.use('/api/reports', reportsRouter);
 app.use('/auth', authRouter);
 app.use('/delete',deleteRoute);
-
 
 
 // catch 404 and forward to error handler

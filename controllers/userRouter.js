@@ -36,6 +36,7 @@ var upload = multer({
 
 //Get All users
 router.get('/', auth, function (req, res, next) {
+
   userModel.find().exec((err, users) => {
     if (err)
       return res.json({
