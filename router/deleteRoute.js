@@ -7,7 +7,7 @@ const reportModel=require("../models/labReports");
 //patient Schema
 const patientModel =require("../models/patients");
 //userModel
-const {userModel}=require("../models/userModel");
+const userModel=require("../models/userModel");
 
 //this one is for debug purpose
 deleteRoute.post("/data",async(req,res)=>{
