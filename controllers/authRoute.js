@@ -27,6 +27,7 @@ router.get('/', function (req, res, next) {
 //Register Users
 
 router.post('/register', upload.single('img'), function (req, res, next) {
+  
   userModel
     .findOne({
       $or: [
@@ -35,13 +36,15 @@ router.post('/register', upload.single('img'), function (req, res, next) {
       ],
     })
     .exec(function (err, done) {
-      if (err) console.log(err);
+      
+      if (err) console.log("Error occured");
       if (done)
         return res.json({
           msg: 'User already exists',
           isOTPSent: false,
         });
       else {
+        
         //encrypting the password
         var password1;
         const salt = bcrypt.genSalt(10);
@@ -107,7 +110,10 @@ router.post('/register', upload.single('img'), function (req, res, next) {
         });
       }
     });
-});
+
+}
+
+);
 
 //Verify Contact Number while registration
 router.post('/verify/contact/otp/:id', function (req, res, next) {
