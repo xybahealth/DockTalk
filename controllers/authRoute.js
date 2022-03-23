@@ -58,6 +58,7 @@ router.post('/register', upload.single('img'), function (req, res, next) {
 
             //Creating a new User
             const newUser = new userModel({
+              
               name: req.body.name,
               email: req.body.email,
               qualification: req.body.qualification,
@@ -75,17 +76,17 @@ router.post('/register', upload.single('img'), function (req, res, next) {
             if (req.file) {
               newUser.img = process.env.API_ORIGIN + req.file.path;
             } else {
-              newUser.img =
-                process.env.API_ORIGIN + 'images/defaultProfile.png';
+              //this code is when user new user don't send image default image is set
+              // newUser.img =
+              //   process.env.API_ORIGIN + 'images/defaultProfile.png';
+              newUser.img=null;
             }
 
             //saving the user
             newUser.save(function (error, user) {
               if (error) return res.json({ msg: 'Server Error', error: error });
               else {
-                // //my own code
-                // res.status(200).json({"msg":"New User created"});
-                // return;
+                //previous sms endpoint
                 //https://aakashsms.com/admin/public/sms/v3/send
 
                 // Sending OTP to Contact Number
