@@ -267,7 +267,7 @@ router.put('/user/change/profile-image', auth, upload.single('img'), function (
   next
 ) {
   if (req.file) {
-    var secure_url = process.env.API_ORIGIN + req.file.path;
+    var secure_url = process.env.API_ORIGIN_HEROKU + req.file.path;
     //updating the user image to db
     userModel.update(
       { _id: req.user.user.id },

@@ -76,7 +76,7 @@ router.post('/register', upload.single('img'), function (req, res, next) {
             if (req.file) {
               newUser.img = process.env.API_ORIGIN + req.file.path;
             } else {
-              //this code is when user new user don't send image default image is set
+              //this code is when user new user don't send image default image is set in orginal code this is manupulated
               // newUser.img =
               //   process.env.API_ORIGIN + 'images/defaultProfile.png';
               newUser.img=null;
