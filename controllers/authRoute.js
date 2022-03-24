@@ -12,6 +12,8 @@ const userModel = require('../models/userModel');
 const multerSettings = require('../configs/multerSetup');
 const { generateOTP } = require('../utils/otpGenerator');
 const { default: Axios } = require('axios');
+//this one is for phonumber sanitization from backend
+const {sanitizePhoneNumber}=require("../utils/phoenNumberSanitizer");
 
 require('dotenv').config();
 
@@ -44,6 +46,8 @@ router.post('/register', upload.single('img'), function (req, res, next) {
           isOTPSent: false,
         });
       else {
+        //sanitize Phone Number
+        let phoneNumber=sanitizePhoneNumber(req.body.contact_number);
         
         //encrypting the password
         var password1;
@@ -63,7 +67,7 @@ router.post('/register', upload.single('img'), function (req, res, next) {
               email: req.body.email,
               qualification: req.body.qualification,
 
-              contact_number: req.body.contact_number,
+              contact_number: phoneNumber,
               password: password,
               role: req.body.role,
 
@@ -418,5 +422,9 @@ router.post('/logout', auth, function (req, res, next) {
     }
   );
 });
+
+
+
+
 
 module.exports = router;
