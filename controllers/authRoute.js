@@ -47,7 +47,8 @@ router.post('/register', upload.single('img'), function (req, res, next) {
         });
       else {
         //sanitize Phone Number
-        let phoneNumber=sanitizePhoneNumber(req.body.contact_number);
+        let phoneNumber=req.body.contact_number;
+        phoneNumber=phoneNumber==null||phoneNumber==undefined?"0":sanitizePhoneNumber(phoneNumber);
         
         //encrypting the password
         var password1;
