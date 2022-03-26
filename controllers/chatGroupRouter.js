@@ -58,8 +58,8 @@ router.post('/add', auth, upload.single('img'), function (req, res, next) {
     users: [req.body.admin],
     admin: req.body.admin,
   });
-
-  userModel.findOne({ email: req.body.admin }).exec((er, userobj) => {
+  //modified here change from email to contact_number by gsd
+  userModel.findOne({ contact_number: req.body.admin }).exec((er, userobj) => {
     if (er) return res.json({ msg: 'Server Error' });
     else {
       //append group created message
