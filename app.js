@@ -80,6 +80,10 @@ app.use('/api/patients', patientsRouter);
 app.use('/api/reports', reportsRouter);
 app.use('/auth', authRouter);
 app.use('/delete',deleteRoute);
+//To get PORT number for heroku hosted website
+app.get("/port",(req,res)=>{
+  res.status(200).json({"heroku port":process.env.PORT,"localport":PORT});
+})
 
 
 // catch 404 and forward to error handler
