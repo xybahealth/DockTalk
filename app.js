@@ -81,7 +81,7 @@ app.use('/api/reports', reportsRouter);
 app.use('/auth', authRouter);
 app.use('/delete',deleteRoute);
 //To get PORT number for heroku hosted website
-app.get("/port",(req,res)=>{
+app.get("api/port",(req,res)=>{
   res.status(200).json({"heroku port":process.env.PORT,"localport":PORT});
 })
 
