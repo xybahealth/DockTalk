@@ -37,7 +37,8 @@ router.post('/group/members', auth, function (req, res, next) {
           //LOGIC
           group.users.forEach((groupUser) => {
             users.forEach((user) => {
-              if (groupUser == user.email) group_users.push(user);
+              //if (groupUser == user.email) group_users.push(user);//this line was original code below is customized
+              if (groupUser == user.contact_number) group_users.push(user);
             });
           });
           res.json({
