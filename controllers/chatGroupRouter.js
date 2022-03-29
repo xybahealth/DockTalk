@@ -234,7 +234,7 @@ router.post('/image/upload', auth, upload.single('img'), function (
   next
 ) {
   if (req.file) {
-    var secure_url = process.env.API_ORIGIN + req.file.path;
+    var secure_url = process.env.API_ORIGIN_HEROKU + req.file.path;
     return res.json({
       msg: 'Image Uploaded',
       imgUrl: secure_url,
