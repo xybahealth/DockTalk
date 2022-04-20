@@ -41,6 +41,10 @@ const patientSchema = new mongooose.Schema(
     created_by: { type: String },
     last_updated_time: { type: String },
     last_updated_by: { type: String },
+    hopi:{type:String},
+    pastHistory:{type:String},
+    familyHistory:{type:String},
+    socioEconomicHistory:{type:String}
   },
   {
     timestamps: true,

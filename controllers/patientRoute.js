@@ -93,6 +93,7 @@ router.post('/create', auth, function (req, res, next) {
     if (patient) return res.json({ msg: 'Patient already Exists' });
     else {
       //creating new Patient
+      //update by me .. added 4field hopi,patientHistory,familyHistory,sociEconominHistory,
       var newPatient = new patientModel({
         ipNumber: req.body.ipNumber,
         wardName: req.body.wardName,
@@ -105,6 +106,11 @@ router.post('/create', auth, function (req, res, next) {
         obstetricHistory: req.body.obstetricHistory,
         otherRelevantHistory: req.body.otherRelevantHistory,
         operationPerformedModels: req.body.operationPerformedModels,
+        hopi:req.body.hopi,
+        pastHistory:req.body.pastHistory,
+        familyHistory:req.body.familyHistory,
+        socioEconomicHistory:req.body.socioEconomicHistory,
+
         isArchived: false,
       });
 
@@ -508,7 +514,7 @@ router.put('/patient/update/updates/:id', auth, function (req, res, next) {
 });
 
 //Update patient specific  General Examination and more like Mental Stauts ,diseases examination,
-
+//update new data will be added to this update system... hopi,pastHistory,familyHistory,sociEconomicHistory
 router.put('/patient/update/specific/examination/:id', auth, function (
   req,
   res,
@@ -527,6 +533,8 @@ router.put('/patient/update/specific/examination/:id', auth, function (
     patientPlan,
     patientIssueAndComplain,
     last_updated_by,
+
+
   } = req.body;
 
   if (mentalStatus) {
