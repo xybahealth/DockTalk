@@ -533,7 +533,7 @@ router.put('/patient/update/specific/examination/:id', auth, function (
     patientPlan,
     patientIssueAndComplain,
     last_updated_by,
-
+    prescription
 
   } = req.body;
 
@@ -568,7 +568,40 @@ router.put('/patient/update/specific/examination/:id', auth, function (
         }
       }
     );
-  } else if (heightWeightBmi) {
+  }else if(prescription){
+    //ashishdhakal added this line new field new line
+    patientModel
+    .update(
+      { _id: req.params.id },
+      {
+        $push: {
+          prescription: prescription,
+          recentUpdates: {
+            type: 'prescription',
+            data: prescription,
+          },
+        },
+        $set: {
+          last_updated_by: last_updated_by,
+          last_updated_time: Date.now(),
+        },
+      },
+      { new: true }
+    )
+    .exec((err, done) => {
+      if (err)
+        return res.status(500).json({
+          msg: 'Server Error',
+          error: err,
+        });
+      else {
+        res.status(200).json({
+          msg: 'Prescrpiton Added',
+        });
+      }
+    });
+  
+}else if (heightWeightBmi) {
     //Push height weight bmi into heightWeightBmi array
     patientModel.update(
       { _id: req.params.id },

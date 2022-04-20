@@ -44,7 +44,8 @@ const patientSchema = new mongooose.Schema(
     hopi:{type:String},
     pastHistory:{type:String},
     familyHistory:{type:String},
-    socioEconomicHistory:{type:String}
+    socioEconomicHistory:{type:String},
+    prescription:[]
   },
   {
     timestamps: true,
