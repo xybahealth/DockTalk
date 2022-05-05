@@ -356,9 +356,10 @@ router.put('/patient/update/basic/:id', auth, function (req, res, next) {
 //Updating Synopsis
 router.put('/patient/update/synopsis/:id', auth, function (req, res, next) {
   const { synopsis } = req.body;
+  
   patientModel.update(
     { _id: req.params.id },
-    { $push: { synopsis: synopsis } },
+    { $push: { synopsis : synopsis } },
     function (err, done) {
       if (err)
         return res.json({

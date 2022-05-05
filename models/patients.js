@@ -11,7 +11,7 @@ const patientSchema = new mongooose.Schema(
     associated_room: {
       type: String,
     },
-    sypnosis: [],
+    synopsis: [],
     assessment: [],
     patientIssueAndComplain: [],
     patientPlan: [],
