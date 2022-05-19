@@ -575,12 +575,13 @@ router.put('/patient/update/specific/examination/:id', auth, function (
     .update(
       { _id: req.params.id },
       {
+        $push: {
           prescription: prescription,
           recentUpdates: {
             type: 'prescription',
             data: prescription,
           },
-        
+        },
         $set: {
           last_updated_by: last_updated_by,
           last_updated_time: Date.now(),
@@ -600,7 +601,7 @@ router.put('/patient/update/specific/examination/:id', auth, function (
         });
       }
     });
-  
+    
 }else if (heightWeightBmi) {
     //Push height weight bmi into heightWeightBmi array
     patientModel.update(
@@ -916,5 +917,41 @@ router.put('/patient/update/specific/examination/:id', auth, function (
     });
   }
 });
+
+
+//ghanashyam added new api for prescrption value update using index
+router.put('/patient/update/update/prescrption/:id', auth,function (req, res) {
+  //here we get id from params and index from query
+  
+ const {last_updated_by,prescription}=req.body;
+ const index=req.query.index;
+
+patientModel
+.update(
+  { _id: req.params.id },
+  {
+    [`prescription.${index}`]: prescription,
+    $set: {
+      last_updated_by: last_updated_by,
+      last_updated_time: Date.now(),
+    },
+  },
+  { new: true }
+)
+.exec((err, done) => {
+  if (err)
+    return res.status(500).json({
+      msg: 'Server Error',
+      error: err,
+    });
+  else {
+    res.status(200).json({
+      msg: 'Prescrpiton value updated for given index',
+    });
+  }
+});
+
+});
+
 
 module.exports = router;
