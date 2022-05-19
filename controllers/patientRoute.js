@@ -575,13 +575,12 @@ router.put('/patient/update/specific/examination/:id', auth, function (
     .update(
       { _id: req.params.id },
       {
-        $push: {
           prescription: prescription,
           recentUpdates: {
             type: 'prescription',
             data: prescription,
           },
-        },
+        
         $set: {
           last_updated_by: last_updated_by,
           last_updated_time: Date.now(),

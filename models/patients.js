@@ -45,7 +45,7 @@ const patientSchema = new mongooose.Schema(
     pastHistory:{type:String},
     familyHistory:{type:String},
     socioEconomicHistory:{type:String},
-    prescription:[]
+    prescription:{}
   },
   {
     timestamps: true,
