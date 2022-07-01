@@ -79,7 +79,10 @@ app.use('/api/chatgroup', chatGroupRouter);
 app.use('/api/patients', patientsRouter);
 app.use('/api/reports', reportsRouter);
 app.use('/auth', authRouter);
-app.use('/delete',deleteRoute);
+//app.use('/delete',deleteRoute);//uncomment to use delete data from the system
+
+
+
 //To get PORT number for heroku hosted website
 app.get("/api/port",(req,res)=>{
   res.status(200).json({"heroku port":process.env.PORT,"localport":PORT});

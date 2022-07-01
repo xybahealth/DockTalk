@@ -1,3 +1,4 @@
+const { json } = require('express');
 var express = require('express');
 var multer = require('multer');
 var path = require('path');
@@ -925,7 +926,15 @@ router.put('/patient/update/update/prescrption/:id', auth,function (req, res) {
   
  const {last_updated_by,prescription}=req.body;
  const index=req.query.index;
+patientModel.findById({_id:req.params.id}).exec((error,result)=>{
+  let stringData=result.prescription;
+  console.log(JSON.parse(stringData[0]));
+  res.status(200).json({"msg":"Data Fetched","data":result});
+})
 
+
+
+ /*
 patientModel
 .update(
   { _id: req.params.id },
@@ -949,7 +958,7 @@ patientModel
       msg: 'Prescrpiton value updated for given index',
     });
   }
-});
+});*/
 
 });
 

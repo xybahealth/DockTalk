@@ -10,6 +10,8 @@ const patientModel =require("../models/patients");
 const userModel=require("../models/userModel");
 
 //this one is for debug purpose
+//uncomment to use delete data
+
 deleteRoute.post("/data",async(req,res)=>{
     try{
         await userModel.create({
