@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 
 const dbName = 'Doc_Talk';
 const dbURL = 'mongodb://127.0.0.1:27017';
+const newDbUrl='mongodb+srv://xybahealth:xyba123@cluster0.bddcv.mongodb.net/DoctalkData?retryWrites=true&w=majority';
 
 mongoose.connect(
-  "mongodb+srv://gsd:gsd1234@nodejsexample.waqmn.mongodb.net/DocTalkDatabase?retryWrites=true&w=majority",
+  newDbUrl,
 
   
 

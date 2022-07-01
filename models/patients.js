@@ -3,10 +3,9 @@ const patientSchema = new mongooose.Schema(
   {
     bedNo: {
       type: String,
-      required: true,
     },
     wardName: { type: String },
-    ipNumber: { type: String, unique: true, sparse: true },
+    ipNumber: { type: String, sparse: true },
     patient_details: {},
     associated_room: {
       type: String,
